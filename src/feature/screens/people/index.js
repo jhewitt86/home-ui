@@ -16,7 +16,7 @@ class AppPeople extends React.Component {
       <Screen>
         <Banner>People</Banner>
         <Tip msg="Interact with people in conversations to add them here." />
-        <Panel background={"secondary"}>
+        <Panel background={"white"}>
           <Wrap>
             <Space>
               <AvatarList data={People[0].children} />

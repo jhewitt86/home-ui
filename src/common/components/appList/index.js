@@ -13,10 +13,12 @@ import {
 
 class AppList extends React.Component {
   render() {
-    const apps = this.props.data.map(item => {
+    const apps = this.props.data.map((item, i) => {
+      let jiggle;
+      if (i === 0) jiggle = 1;
       return (
         <ListedApp key={uuid.v4()}>
-          <AppButton to={item.route}>
+          <AppButton to={item.route} jiggle={jiggle}>
             <AppButtonWrap>
               <Space>
                 <AppButtonIcon>

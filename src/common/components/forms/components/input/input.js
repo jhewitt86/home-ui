@@ -21,15 +21,16 @@ class FormInput extends React.Component {
   };
   render() {
     return (
-      <FieldWrap>
+      <FieldWrap noPadding={this.props.noPadding}>
         <InputField
+          type={this.props.type || "text"}
           name={this.props.name}
           placeholder={this.props.name}
           label="Headline"
           onFocus={this.focus}
           onBlur={this.blur}
           onChange={this.changeValue}
-          value={this.props.getValue() || ""}
+          value={this.props.getValue() || this.props.defaultValue || ""}
           autoFocus={this.props.autoFocus}
           autoComplete={!this.props.autoComplete && "off"}
         />

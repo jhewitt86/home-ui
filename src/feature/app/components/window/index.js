@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AppLogin from "../../../screens/login";
 import { Window } from "./style";
+import AuthUtils from "utils/auth";
 
 import {
   Home,
@@ -13,7 +15,7 @@ import {
 
 class AppWindow extends React.Component {
   render() {
-    return (
+    return AuthUtils.logged_in ? (
       <Window>
         <Router>
           <div>
@@ -22,11 +24,19 @@ class AppWindow extends React.Component {
               <Route path="/people" component={People} />
               <Route path="/conversations" component={Conversations} />
               <Route path="/newConversation" component={NewConversation} />
+              <Route path="/login" component={AppLogin} />
               <Route component={ErrorScreen} />
             </Switch>
           </div>
         </Router>
       </Window>
+    ) : (
+      <Router>
+        <div>
+          <Route path="/" component={AppLogin} />
+          <Route path="/register" component={AppLogin} />
+        </div>
+      </Router>
     );
   }
 }

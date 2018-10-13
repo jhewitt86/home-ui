@@ -5,7 +5,7 @@ class Avatar extends React.Component {
   render() {
     const { item } = this.props;
 
-    const image = <ItemBubble background={item.img} />;
+    const image = <ItemBubble background={item.avatar} />;
     return (
       <MapItem size={1}>
         {image}

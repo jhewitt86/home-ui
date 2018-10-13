@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 
 const windowAnimation = keyframes`
     from {
@@ -14,6 +14,11 @@ const windowAnimation = keyframes`
 
 const Screen = styled.div`
   animation: ${windowAnimation} ${props => props.theme.animation.default};
+  ${props =>
+    props.noAnimation &&
+    css`
+      animation: initial;
+    `};
 `;
 
 export default Screen;

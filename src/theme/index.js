@@ -21,7 +21,8 @@ export const Theme = {
   },
   window: {
     maxWidth: "94%",
-    height: "100%"
+    height: "100%",
+    narrow: "80%"
   },
   colors: {
     primary: "#16264a",
@@ -35,6 +36,8 @@ export const Theme = {
     black: "#000",
     charcoal: "#444",
     white: "#fff",
+    button: "#0f72ec",
+    link: "#0c8ae4",
     map: {
       background: "#222",
       foreground: "#ffe6b3"

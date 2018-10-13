@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import Moment from "react-moment";
 
 export const ChatList = styled.ul`
   margin: 0;
@@ -37,10 +38,11 @@ export const ChatDetail = styled.div`
   display: grid;
   grid-template-columns: 1.5em auto;
   align-items: center;
-  opacity: 0.8;
+  opacity: 0.5;
   padding: ${props => props.theme.spacing.sm} 0;
   font-size: ${props => props.theme.font.size.xs};
   font-weight: ${props => props.theme.font.weight.medium};
+  io
 `;
 
 export const PrivateDetail = styled.div`
@@ -57,4 +59,17 @@ export const TriggerDetail = styled.div`
   bottom: 0;
   color: ${props => props.theme.colors.primary};
   padding: ${props => props.theme.spacing.xs} ${props => props.theme.spacing.sm};
+`;
+
+export const TimeContainer = styled.div`
+  grid-column: span 2;
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+`;
+
+export const Time = styled(Moment)`
+  font-size: ${props => props.theme.font.size.xs};
+  font-weight: ${props => props.theme.font.weight.medium};
+  opacity: 0.5;
 `;

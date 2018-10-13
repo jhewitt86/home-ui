@@ -6,6 +6,25 @@ import { Redirect } from "react-router-dom";
 import { FormInput, FormTextarea, FormSubmit } from "common/components/forms";
 import * as actions from "../../../../duck/actions";
 
+import gql from "graphql-tag";
+import { Mutation } from "react-apollo";
+
+const POST_CONVERSATION = gql`
+  mutation createMessage($title: String!, $body: String!, $public: Boolean!) {
+    createMessage(title: $title, body: $body, public: $public) {
+      id
+      title
+      body
+      createdAt
+      public
+      user {
+        id
+        username
+      }
+    }
+  }
+`;
+
 class FormNewConversation extends React.Component {
   constructor(props) {
     super(props);
@@ -14,10 +33,7 @@ class FormNewConversation extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  componentDidUpdate(prevProps) {
-    console.log(prevProps);
-    console.log(this.props);
-  }
+  componentDidUpdate(prevProps) {}
   handleSubmit = e => {
     this.props.actions.post(e);
     this.setState({
@@ -26,14 +42,35 @@ class FormNewConversation extends React.Component {
   };
   render() {
     const redirect = <Redirect to="/conversations" />;
+
     return (
       <div>
         {this.state.sent && redirect}
-        <Formsy onSubmit={this.handleSubmit}>
-          <FormInput name="Headline" icon="label" autoFocus={1} />
-          <FormTextarea name="Post" />
-          <FormSubmit label="Post" />
-        </Formsy>
+        <Mutation mutation={POST_CONVERSATION}>
+          {(createMessage, { data }) => (
+            <Formsy
+              onSubmit={e =>
+                createMessage({
+                  variables: {
+                    title: e.Headline,
+                    body: e.Post,
+                    public: true
+                  }
+                })
+                  .then(
+                    this.setState({
+                      sent: true
+                    })
+                  )
+                  .catch(error => this.setState({ error }))
+              }
+            >
+              <FormInput name="Headline" icon="label" autoFocus={1} />
+              <FormTextarea name="Post" />
+              <FormSubmit label="Post" />
+            </Formsy>
+          )}
+        </Mutation>
       </div>
     );
   }

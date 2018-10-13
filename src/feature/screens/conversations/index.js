@@ -24,16 +24,8 @@ class AppConversations extends React.Component {
       }
     };
   }
-  componentDidMount() {
-    this.props.actions.fetch();
-  }
-  componentDidUpdate(prevProps) {
-    if (this.props !== prevProps) {
-      this.setState({
-        msgs: this.props.conversations.msgs
-      });
-    }
-  }
+  componentDidMount() {}
+  componentDidUpdate(prevProps) {}
   render() {
     return (
       <div>
@@ -42,7 +34,7 @@ class AppConversations extends React.Component {
           <Panel background={"white"}>
             <Wrap>
               <Space>
-                <ConversationList data={this.state.msgs.all} />
+                <ConversationList />
               </Space>
               <Space />
               <Space />

@@ -3,6 +3,11 @@ import styled, { css } from "styled-components";
 export const FieldWrap = styled.div`
   padding: ${props => props.theme.spacing.md} 0;
   position: relative;
+  ${props =>
+    props.noPadding &&
+    css`
+      padding: 0;
+    `};
 `;
 
 export const IconWrap = styled.div`
@@ -24,8 +29,10 @@ export const SubmitIconWrap = styled(IconWrap)`
 
 export const InputField = styled.input`
   appearance: none;
+  background-color: transparent;
   padding: ${props => props.theme.spacing.sm} ${props => props.theme.spacing.sm}
     ${props => props.theme.spacing.sm} ${props => props.theme.spacing.xxl};
+  color: ${props => props.theme.colors.primary};
   border: none;
   border-bottom: 1px solid transparent;
   width: 100%;
@@ -63,17 +70,16 @@ export const SubmitButton = styled.button`
   text-align: center;
   font-family: ${props => props.theme.font.family.default};
   font-size: ${props => props.theme.font.size.sm};
-  font-weight: ${props => props.theme.font.weight.bold};
+  font-weight: ${props => props.theme.font.weight.medium};
   transition: ${props => props.theme.animation.default};
-  background-color: ${props => props.theme.colors.notify};
+  background-color: ${props => props.theme.colors.button};
   color: ${props => props.theme.colors.white};
   cursor: pointer;
   &:hover {
     background-color: ${props => props.theme.colors.primary};
   }
   &:focus {
-    background-color: ${props => props.theme.colors.highlight};
-    color: ${props => props.theme.colors.primary};
-    border-color: ${props => props.theme.colors.primary};
+    background-color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.white};
   }
 `;

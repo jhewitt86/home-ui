@@ -21,13 +21,13 @@ class FormSubmit extends React.Component {
   };
   render() {
     return (
-      <FieldWrap>
+      <FieldWrap noPadding={this.props.noPadding}>
         <SubmitButton
           onFocus={this.focus}
           onBlur={this.blur}
           onChange={this.changeValue}
         >
-          <Grid template="2em auto" inline={1} gap="xs">
+          <Grid template="1.5em auto" inline={1} gap="xs">
             <SubmitIconWrap>
               <MaterialIcon
                 icon={this.props.icon || "check_circle"}
