@@ -18,11 +18,11 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const httpLink = new HttpLink({
-  uri: "http://192.168.1.102:8000/graphql"
+  uri: "https://home-server-test.herokuapp.com/graphql"
 });
 
 const wsLink = new WebSocketLink({
-  uri: `ws://192.168.1.102:8000/graphql`,
+  uri: `ws://home-server-test.herokuapp.com/graphql`,
   options: {
     reconnect: true
   }
