@@ -39,7 +39,7 @@ const Panel = styled.div`
       &:before {
         content: "";
         animation: ${screenAnimation} 2s;
-        background-image: url(https://source.unsplash.com/featured/?nature);
+        background-image: url(https://source.unsplash.com/featured/?water);
         background-size: cover;
         background-position: 50% 50%;
         position: fixed;

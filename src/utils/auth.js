@@ -15,6 +15,7 @@ if (token) {
 
 export default {
   logged_in: token,
+  user: decoded,
   expire: expire,
   logout: () => {
     localStorage.removeItem("JWT");

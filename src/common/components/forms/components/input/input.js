@@ -25,7 +25,7 @@ class FormInput extends React.Component {
         <InputField
           type={this.props.type || "text"}
           name={this.props.name}
-          placeholder={this.props.name}
+          placeholder={this.props.label || this.props.name}
           label="Headline"
           onFocus={this.focus}
           onBlur={this.blur}
@@ -33,6 +33,7 @@ class FormInput extends React.Component {
           value={this.props.getValue() || this.props.defaultValue || ""}
           autoFocus={this.props.autoFocus}
           autoComplete={!this.props.autoComplete && "off"}
+          noBorder={this.props.noBorder}
         />
         <IconWrap>
           <MaterialIcon icon={this.props.icon || "label"} size={18} />

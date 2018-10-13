@@ -9,6 +9,11 @@ export const FlexibleGrid = styled.div`
       align-items: center;
     `};
   ${props =>
+    props.end &&
+    css`
+      align-items: end;
+    `};
+  ${props =>
     props.gap &&
     css`
       grid-gap: ${props.theme.spacing[props.gap]};

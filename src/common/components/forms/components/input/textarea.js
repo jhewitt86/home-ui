@@ -21,15 +21,17 @@ class FormTextarea extends React.Component {
   };
   render() {
     return (
-      <FieldWrap>
+      <FieldWrap noPadding={this.props.noPadding}>
         <TextareaField
           name={this.props.name}
-          placeholder={this.props.name}
+          placeholder={this.props.label || this.props.name}
           label="Headline"
           onFocus={this.focus}
           onBlur={this.blur}
           onChange={this.changeValue}
           value={this.props.getValue() || ""}
+          expandOnFocus={this.props.expandOnFocus}
+          noBorder={this.props.noBorder}
         />
       </FieldWrap>
     );

@@ -20,22 +20,27 @@ class FormSubmit extends React.Component {
     this.props.setValue(e.currentTarget.value);
   };
   render() {
+    const Icon = (
+      <SubmitIconWrap>
+        <MaterialIcon icon={this.props.icon || "check_circle"} size={16} />
+      </SubmitIconWrap>
+    );
     return (
       <FieldWrap noPadding={this.props.noPadding}>
         <SubmitButton
           onFocus={this.focus}
           onBlur={this.blur}
           onChange={this.changeValue}
+          circle={this.props.circle}
         >
-          <Grid template="1.5em auto" inline={1} gap="xs">
-            <SubmitIconWrap>
-              <MaterialIcon
-                icon={this.props.icon || "check_circle"}
-                size={16}
-              />
-            </SubmitIconWrap>
-            {this.props.label || "Submit"}
-          </Grid>
+          {!this.props.hideLabel ? (
+            <Grid template="1.5em auto" inline={1} gap="xs">
+              {Icon}
+              {this.props.label || "Submit"}
+            </Grid>
+          ) : (
+            Icon
+          )}
         </SubmitButton>
       </FieldWrap>
     );

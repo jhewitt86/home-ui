@@ -1,6 +1,7 @@
 import React from "react";
 import uuid from "uuid";
 import gql from "graphql-tag";
+import { Mutation } from "react-apollo";
 import { ChatReply } from "common/components";
 import { ReplyList } from "./style";
 
@@ -21,6 +22,14 @@ const COMMENT_SUBSCRIPTION = gql`
   }
 `;
 
+const DELETE_COMMENT = gql`
+  mutation deleteComment($id: ID!) {
+    deleteComment(id: $id) {
+      id
+    }
+  }
+`;
+
 class Thread extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +39,7 @@ class Thread extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.setState({
       comments: this.props.data || []
     });
@@ -62,11 +71,35 @@ class Thread extends React.Component {
   render() {
     let { comments } = this.state || [];
 
-    const items = comments.map((item, i) => {
-      return <ChatReply i={i} item={item} key={uuid.v4()} />;
-    });
-
-    return <ReplyList>{items}</ReplyList>;
+    return (
+      <Mutation mutation={DELETE_COMMENT}>
+        {(deleteComment, { data }) => (
+          <ReplyList>
+            {comments.map((item, i) => (
+              <ChatReply
+                onDelete={() => {
+                  deleteComment({
+                    variables: {
+                      id: item.id
+                    }
+                  })
+                    .then(response => {
+                      comments = comments.filter(comment => comment != item);
+                      this.setState({
+                        comments: comments
+                      });
+                    })
+                    .catch(error => console.log(error));
+                }}
+                i={i}
+                item={item}
+                key={uuid.v4()}
+              />
+            ))}
+          </ReplyList>
+        )}
+      </Mutation>
+    );
   }
 }
 

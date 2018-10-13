@@ -26,7 +26,6 @@ const GET_CONVERSATION = gql`
       user {
         id
         username
-        email
         avatar
       }
     }
@@ -67,7 +66,10 @@ class ViewConversation extends React.Component {
               }
               return (
                 <div>
-                  <Message item={data.message} />
+                  <Message
+                    item={data.message}
+                    subscribeToMore={subscribeToMore}
+                  />
                   <Panel photo>
                     <Wrap>
                       <Space>

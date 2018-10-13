@@ -12,7 +12,7 @@ class TimeStamp extends React.Component {
     );
     return user ? (
       <Grid cells={2}>
-        <UserName>{user.username}</UserName>
+        <UserName>@{user.username}</UserName>
         <TimeWrapper>{timeDetail}</TimeWrapper>
       </Grid>
     ) : null;
