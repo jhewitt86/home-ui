@@ -7,7 +7,7 @@ class AppHome extends React.Component {
     return (
       <Screen>
         <Tip msg="Join in a conversation to start making connections." />
-        <Panel background={"white"} photo>
+        <Panel photo>
           <Wrap>
             <Space>
               <AppList jiggle={1} data={AppData[0].children} />

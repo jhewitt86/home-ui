@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const AppBanner = styled.div`
-  position: sticky;
+  position: relative;
   z-index: 1;
   top: 0;
   color: ${props => props.theme.colors.primary_dark};

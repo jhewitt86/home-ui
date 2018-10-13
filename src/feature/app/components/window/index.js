@@ -12,6 +12,7 @@ import {
   NewConversation,
   ErrorScreen
 } from "feature/screens";
+import ViewConversation from "feature/screens/conversations/screens/view";
 
 class AppWindow extends React.Component {
   render() {
@@ -22,6 +23,7 @@ class AppWindow extends React.Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/people" component={People} />
+              <Route path="/chat/:chatId" component={ViewConversation} />
               <Route path="/conversations" component={Conversations} />
               <Route path="/newConversation" component={NewConversation} />
               <Route path="/login" component={AppLogin} />

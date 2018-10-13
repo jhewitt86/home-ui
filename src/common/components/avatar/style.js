@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const MapItem = styled.li`
+export const MapItem = styled.div`
   list-style: none;
   position: relative;
   grid-area: auto / span ${props => props.size || 1};
@@ -24,7 +24,7 @@ export const ItemBubble = styled.div`
   cursor: pointer;
   transition: all 0.2s;
   overflow: hidden;
-  border: 5px solid #fff;
+  border: 4px solid #fff;
   ${props =>
     props.background &&
     css`

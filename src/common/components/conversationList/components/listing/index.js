@@ -1,7 +1,7 @@
 import React from "react";
 import uuid from "uuid";
 import gql from "graphql-tag";
-import ListedChatItem from "./listedChat";
+import ListedChatItem from "../listedChat";
 // import Analyze from "api";
 import { ChatList } from "./style";
 
@@ -12,6 +12,7 @@ const CONVERSATIONS_SUBSCRIPTION = gql`
         id
         title
         body
+        commentCount
         createdAt
         public
         user {

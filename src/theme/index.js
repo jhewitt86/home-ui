@@ -35,6 +35,7 @@ export const Theme = {
     green: "#0a942d",
     black: "#000",
     charcoal: "#444",
+    grey: "#e7e5ec",
     white: "#fff",
     button: "#0f72ec",
     link: "#0c8ae4",
@@ -53,7 +54,8 @@ export const Theme = {
   },
   shadow: {
     xs: "0 1px 1px rgba(0,0,0,.1)",
-    sm: "0 1px 2px rgba(0,0,0,.2)"
+    sm: "0 1px 2px rgba(0,0,0,.2)",
+    lg: "0 2px 5px rgba(0,0,0,.3)"
   },
   animation: {
     default: "0.4s",

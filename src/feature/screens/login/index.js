@@ -41,7 +41,7 @@ class AppLogin extends React.Component {
       <Screen noAnimation>
         <Mutation mutation={SIGN_IN}>
           {(signIn, { data }) => (
-            <Panel fixed background="secondary" photo middle>
+            <Panel fixed photo middle>
               <LoginFormWrapper>
                 {this.state.error && (
                   <LoginError>

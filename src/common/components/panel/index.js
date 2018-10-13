@@ -36,10 +36,19 @@ const Panel = styled.div`
     `} ${props =>
     props.photo &&
     css`
-      animation: ${screenAnimation} 2s;
-      background-image: url(https://source.unsplash.com/featured/?nature);
-      background-size: cover;
-      background-position: 50% 50%;
+      &:before {
+        content: "";
+        animation: ${screenAnimation} 2s;
+        background-image: url(https://source.unsplash.com/featured/?nature);
+        background-size: cover;
+        background-position: 50% 50%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+      }
     `};
 `;
 

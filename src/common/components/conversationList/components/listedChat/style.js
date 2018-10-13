@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import Moment from "react-moment";
+import { Link } from "react-router-dom";
 
 export const ChatList = styled.ul`
   margin: 0;
@@ -8,11 +8,15 @@ export const ChatList = styled.ul`
   grid-template-columns: 1fr;
 `;
 
+export const ChatLink = styled(Link)`
+  text-decoration: none;
+  color: ${props => props.theme.colors.black};
+`;
+
 export const ListedChat = styled.li`
   border-bottom: 1px solid ${props => props.theme.colors.highlight};
   margin: 0;
-  padding: 0 ${props => props.theme.spacing.xxl} 0
-    ${props => props.theme.spacing.md};
+  padding: 0 ${props => props.theme.spacing.md};
   list-style: none;
   background-color: ${props => props.theme.colors.white};
   position: relative;
@@ -31,7 +35,19 @@ export const ChatLabel = styled.div`
 export const ChatSummary = styled.div`
   font-size: ${props => props.theme.font.size.sm};
   padding: ${props => props.theme.spacing.sm} 0;
-  font-weight: ${props => props.theme.font.weight.light};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 3.3em;
+  position: relative;
+`;
+
+export const ChatOverlay = styled.div`
+  background: linear-gradient(transparent 20%, #fff 90%);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3em;
 `;
 
 export const ChatDetail = styled.div`
@@ -66,10 +82,4 @@ export const TimeContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
   display: flex;
-`;
-
-export const Time = styled(Moment)`
-  font-size: ${props => props.theme.font.size.xs};
-  font-weight: ${props => props.theme.font.weight.medium};
-  opacity: 0.5;
 `;

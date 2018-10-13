@@ -1,6 +1,6 @@
 export const calendarStrings = {
-  lastDay: "[Yesterday at] LT",
-  sameDay: "[Today at] LT",
+  lastDay: "[Yesterday] HH:mm",
+  sameDay: "[Today] HH:mm",
   nextDay: "[Tomorrow at] LT",
   lastWeek: "ddd HH:mm",
   nextWeek: "dddd [at] LT",

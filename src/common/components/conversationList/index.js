@@ -1,16 +1,20 @@
 import React from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import Listing from "./listing";
+import Listing from "./components/listing";
 // import Analyze from "api";
 
 const GET_CONVERSATIONS = gql`
   query {
     messages {
+      pageInfo {
+        total
+      }
       edges {
         id
         title
         body
+        commentCount
         createdAt
         public
         user {
