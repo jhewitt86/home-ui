@@ -22,7 +22,7 @@ const httpLink = new HttpLink({
 });
 
 const wsLink = new WebSocketLink({
-  uri: `ws://home-server-test.herokuapp.com/graphql`,
+  uri: `wss://home-server-test.herokuapp.com/graphql`,
   options: {
     reconnect: true
   }
