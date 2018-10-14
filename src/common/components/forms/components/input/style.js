@@ -68,6 +68,7 @@ export const TextareaField = InputField.withComponent("textarea").extend`
     ${props =>
       props.expandOnFocus &&
       css`
+        transform: translate3d(0, 0, 0);
         height: 2.3em;
         &:focus {
           height: 5em;
