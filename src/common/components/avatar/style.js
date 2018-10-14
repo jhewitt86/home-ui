@@ -6,6 +6,8 @@ export const MapItem = styled.div`
   grid-area: auto / span ${props => props.size || 1};
   height: 0;
   padding-bottom: 100%;
+  tranform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 `;
 
 export const ItemBubble = styled.div`
@@ -22,12 +24,12 @@ export const ItemBubble = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s;
   overflow: hidden;
   border-weight: 3px;
   border-style: solid;
-  border-color #fff;
+  border-color rgba(255,255,255,1);
   tranform: translate3d(0,0,0);
+  backface-visibility: hidden;
   ${props =>
     props.background &&
     css`
