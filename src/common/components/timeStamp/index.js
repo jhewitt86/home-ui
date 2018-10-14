@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "../grid";
 import { TimeDetail, UserName, TimeWrapper } from "./style";
 import { calendarStrings } from "../../../constants";
+import AuthUtils from "utils/auth";
 
 class TimeStamp extends React.Component {
   render() {
@@ -10,9 +11,14 @@ class TimeStamp extends React.Component {
     const timeDetail = (
       <TimeDetail calendar={calendarStrings}>{dateTime}</TimeDetail>
     );
+    const owner = AuthUtils.user.id === parseInt(user.id);
+
     return user ? (
       <Grid cells={2}>
-        <UserName>@{user.username}</UserName>
+        <UserName>
+          @{user.username}
+          {owner && " (Me)"}
+        </UserName>
         <TimeWrapper>{timeDetail}</TimeWrapper>
       </Grid>
     ) : null;
