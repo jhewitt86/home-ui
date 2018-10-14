@@ -1,7 +1,7 @@
 import React from "react";
 import Formsy from "formsy-react";
 import { Redirect } from "react-router-dom";
-import { Grid } from "common/components";
+import { Grid, Loader } from "common/components";
 import { FormInput, FormTextarea, FormSubmit } from "common/components/forms";
 import { FormWrapper } from "./style";
 import gql from "graphql-tag";
@@ -27,6 +27,7 @@ class FormNewComment extends React.Component {
     super(props);
     this.state = {
       messageId: this.props.messageId,
+      sending: false,
       sent: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,7 +35,8 @@ class FormNewComment extends React.Component {
   componentDidUpdate(prevProps) {}
   handleSubmit = e => {
     this.setState({
-      sent: true
+      sent: true,
+      sending: false
     });
     this.commentForm.reset();
   };
@@ -52,14 +54,21 @@ class FormNewComment extends React.Component {
               }}
               onSubmit={e => {
                 if (e.Reply) {
-                  createMessage({
-                    variables: {
-                      messageId: this.props.messageId,
-                      body: e.Reply
+                  this.setState(
+                    {
+                      sending: true
+                    },
+                    () => {
+                      createMessage({
+                        variables: {
+                          messageId: this.props.messageId,
+                          body: e.Reply
+                        }
+                      })
+                        .then(this.handleSubmit())
+                        .catch(error => this.setState({ error }));
                     }
-                  })
-                    .then(this.handleSubmit())
-                    .catch(error => this.setState({ error }));
+                  );
                 } else {
                 }
               }}
@@ -80,6 +89,7 @@ class FormNewComment extends React.Component {
                   circle
                 />
               </Grid>
+              {this.state.sending && <Loader withContainer />}
             </Formsy>
           )}
         </Mutation>

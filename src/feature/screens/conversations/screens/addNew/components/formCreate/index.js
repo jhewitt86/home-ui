@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { compose, bindActionCreators } from "redux";
 import Formsy from "formsy-react";
 import { Redirect } from "react-router-dom";
+import { Loader } from "common/components";
 import { FormInput, FormTextarea, FormSubmit } from "common/components/forms";
 import * as actions from "../../../../duck/actions";
 
@@ -29,19 +30,23 @@ class FormNewConversation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sent: false
+      sent: false,
+      sending: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidUpdate(prevProps) {}
-  handleSubmit = e => {
-    this.props.actions.post(e);
+  handleSubmit = result => {
+    // this.props.actions.post(e);
+    console.log(result);
     this.setState({
-      sent: true
+      sent: true,
+      sending: false,
+      createdId: result.data.createMessage.id
     });
   };
   render() {
-    const redirect = <Redirect to="/conversations" />;
+    const redirect = <Redirect to={`/chat/${this.state.createdId}`} />;
 
     return (
       <div>
@@ -50,19 +55,22 @@ class FormNewConversation extends React.Component {
           {(createMessage, { data }) => (
             <Formsy
               onSubmit={e =>
-                createMessage({
-                  variables: {
-                    title: e.Headline,
-                    body: e.Post,
-                    public: true
-                  }
-                })
-                  .then(
-                    this.setState({
-                      sent: true
+                this.setState(
+                  {
+                    seding: true
+                  },
+                  () => {
+                    createMessage({
+                      variables: {
+                        title: e.Headline,
+                        body: e.Post,
+                        public: true
+                      }
                     })
-                  )
-                  .catch(error => this.setState({ error }))
+                      .then(result => this.handleSubmit(result))
+                      .catch(error => this.setState({ error }));
+                  }
+                )
               }
             >
               <FormInput name="Headline" icon="label" autoFocus={1} />
@@ -71,6 +79,7 @@ class FormNewConversation extends React.Component {
             </Formsy>
           )}
         </Mutation>
+        {this.state.sending && <Loader withContainer />}
       </div>
     );
   }

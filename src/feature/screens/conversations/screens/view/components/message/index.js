@@ -6,7 +6,8 @@ import {
   Space,
   TimeStamp,
   Wrap,
-  MaterialIcon
+  MaterialIcon,
+  Loader
 } from "common/components";
 import FormNewComment from "../addComment";
 import { MessageWrapper, MessageText, Headline, CommentStatus } from "./style";

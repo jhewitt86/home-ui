@@ -1,6 +1,7 @@
 import React from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
+import { Loader } from "common/components";
 import Listing from "./components/listing";
 // import Analyze from "api";
 
@@ -37,7 +38,7 @@ class ConversationList extends React.Component {
           }
 
           if (loading) {
-            return <span>Loading ...</span>;
+            return <Loader withContainer />;
           }
 
           return (

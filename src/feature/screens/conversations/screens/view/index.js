@@ -1,7 +1,7 @@
 import React from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import { Screen, Banner, Panel, Wrap, Space } from "common/components";
+import { Screen, Banner, Panel, Wrap, Space, Loader } from "common/components";
 import Message from "./components/message";
 import Thread from "./components/thread";
 
@@ -62,7 +62,13 @@ class ViewConversation extends React.Component {
               }
 
               if (loading) {
-                return <span>Loading ...</span>;
+                return (
+                  <Panel background="white">
+                    <Wrap>
+                      <Loader withContainer />
+                    </Wrap>
+                  </Panel>
+                );
               }
               return (
                 <div>

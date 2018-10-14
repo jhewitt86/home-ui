@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose, bindActionCreators } from "redux";
 import Formsy from "formsy-react";
-import { Screen, Panel, Wrap, Space, Grid } from "common/components";
+import { Screen, Panel, Wrap, Space, Grid, Loader } from "common/components";
 import { FormInput, FormSubmit } from "common/components/forms";
 import { LoginFormWrapper, LoginError, Toolbar, Hyperlink } from "./style";
 import * as actions from "./duck/actions";
@@ -15,6 +15,7 @@ class AppLogin extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
+      loading: false,
       error: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,16 +51,23 @@ class AppLogin extends React.Component {
                 )}
                 <Formsy
                   onSubmit={e =>
-                    signIn({
-                      variables: {
-                        login: e.Username,
-                        password: e.Password
+                    this.setState(
+                      {
+                        loading: true
+                      },
+                      () => {
+                        signIn({
+                          variables: {
+                            login: e.Username,
+                            password: e.Password
+                          }
+                        })
+                          .then(response =>
+                            this.props.actions.login(response.data.signIn.token)
+                          )
+                          .catch(error => this.setState({ error }));
                       }
-                    })
-                      .then(response =>
-                        this.props.actions.login(response.data.signIn.token)
-                      )
-                      .catch(error => this.setState({ error }))
+                    )
                   }
                 >
                   <FormInput
@@ -104,6 +112,7 @@ class AppLogin extends React.Component {
             </Panel>
           )}
         </Mutation>
+        {this.state.loading && <Loader withContainer />}
       </Screen>
     );
   }
