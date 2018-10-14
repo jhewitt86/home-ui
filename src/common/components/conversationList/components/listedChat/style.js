@@ -42,7 +42,7 @@ export const ChatSummary = styled.div`
 `;
 
 export const ChatOverlay = styled.div`
-  background: linear-gradient(transparent 20%, #fff 90%);
+  background: linear-gradient(rgba(255, 255, 255, 0) 20%, #fff 90%);
   position: absolute;
   right: 0;
   bottom: 0;

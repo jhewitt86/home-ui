@@ -77,6 +77,8 @@ export const LoadingCircle = styled.div`
   border-radius: 100%;
   overflow: hidden;
   position: relative;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
   animation: 2s ${CircleColourCycle} infinite;
 `;
 

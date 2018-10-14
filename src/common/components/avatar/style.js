@@ -24,7 +24,10 @@ export const ItemBubble = styled.div`
   cursor: pointer;
   transition: all 0.2s;
   overflow: hidden;
-  border: 3px solid #fff;
+  border-weight: 3px;
+  border-style: solid;
+  border-color #fff;
+  tranform: translate3d(0,0,0);
   ${props =>
     props.background &&
     css`
